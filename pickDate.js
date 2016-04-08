@@ -15,11 +15,11 @@ function PickDate () {
 }
 
 PickDate.prototype.render = function () {
-
+	this.setTable();
 }
 
 PickDate.prototype.setTable = function () {
-	this.table = document.createElement('table');
+	var table = document.createElement('table');
 	this.setHeader();
 	this.setBody();
 };
@@ -28,13 +28,12 @@ PickDate.prototype.setHeader = function () {
 	var thead = document.createElement('thead');
 	thead.innerHTML = '<tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>';
 	this.table.appendChild(thead);
-	this.table.appendChild(tbody);
 };
 
 PickDate.prototype.setBody = function () {
 	var tbody = document.createElement('tbody'),
-		year = this.getYear(),
-		month = this.getMonth(),
+		year = getYear(today),
+		month = getMonth(today),
 		daysNum = getDaysNumInMonth(year, month),
 		day = this.today.getDay();
 
@@ -50,6 +49,7 @@ PickDate.prototype.setBody = function () {
 		}
 		tbody.appendChild(tr);
 	}
+
 	this.table.appendChild(tbody);
 };
 
